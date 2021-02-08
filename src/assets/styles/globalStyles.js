@@ -21,6 +21,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.6rem;
     font-family: 'Montserrat', sans-serif;
     background-color: ${theme.primary};
+    padding-top: 30px;
   }
 
   h1, h2, h3, h4, h5, span {
