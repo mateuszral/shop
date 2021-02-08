@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'vendors/normalize.css';
+import { theme } from 'assets/styles/theme';
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -19,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     font-size: 1.6rem;
     font-family: 'Montserrat', sans-serif;
+    background-color: ${theme.primary};
   }
 
   h1, h2, h3, h4, h5, span {
@@ -34,6 +36,11 @@ const GlobalStyles = createGlobalStyle`
   ul {
     padding: 0;
     margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
   }
 `;
 
