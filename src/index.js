@@ -6,7 +6,7 @@ import Root from 'pages/Root';
 
 WebFont.load({
   google: {
-    families: ['Montserrat:400,700', 'sans-serif'],
+    families: ['Montserrat:400,600,700', 'sans-serif'],
   },
 });
 
