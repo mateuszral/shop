@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import Paragraph from 'components/Paragraph/Paragraph';
 
@@ -15,6 +18,24 @@ const StyledCard = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
 `;
 
 const StyledDescriptionWrapper = styled.div`
@@ -23,12 +44,18 @@ const StyledDescriptionWrapper = styled.div`
 
 const Card = ({ id, title, slug, description, price, categories, image }) => (
   <StyledCard key={id} as={Link} to={`${routes.products}${slug}`}>
-    <img alt={title} src={`http://localhost:1337${image.formats.thumbnail.url}`} />
+    <LazyLoadImage
+      alt={title}
+      src={`http://localhost:1337${image.formats.thumbnail.url}`}
+      effect="blur"
+      height="156px"
+    />
     <StyledDescriptionWrapper>
-      <Paragraph bold>{title} sticker</Paragraph>
+      <Paragraph bold>
+        {title} sticker - ${price}
+      </Paragraph>
       <Paragraph grey>{description}</Paragraph>
       <Paragraph bold>Categories: {categories.map(({ name }) => `${name} `)}</Paragraph>
-      <Paragraph bold>${price}</Paragraph>
     </StyledDescriptionWrapper>
   </StyledCard>
 );
