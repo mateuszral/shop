@@ -7,6 +7,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import Paragraph from 'components/Paragraph/Paragraph';
 import Header from 'components/Header/Header';
+import BoxShadow from 'components/BoxShadow/BoxShadow';
 
 import { useItems } from 'store';
 
@@ -43,23 +44,6 @@ const StyledButton = styled.button`
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
   margin-top: 5px;
   position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
-    transition: opacity 0.3s ease;
-  }
-
-  &:hover::after {
-    opacity: 1;
-  }
 `;
 
 const ProductTemplate = ({ match }) => {
@@ -90,7 +74,10 @@ const ProductTemplate = ({ match }) => {
                 </Header>
                 <Paragraph grey>{description}</Paragraph>
                 <Paragraph bold>Categories: {categories.map(({ name }) => `${name} `)}</Paragraph>
-                <StyledButton>Add to cart</StyledButton>
+                <StyledButton>
+                  Add to cart
+                  <BoxShadow />
+                </StyledButton>
               </ContentWrapper>
             </Fragment>
           ))
