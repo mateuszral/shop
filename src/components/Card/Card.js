@@ -7,6 +7,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import Paragraph from 'components/Paragraph/Paragraph';
+import Header from 'components/Header/Header';
 
 import { routes } from 'routes';
 
@@ -51,9 +52,9 @@ const Card = ({ id, title, slug, description, price, categories, image }) => (
       height="156px"
     />
     <StyledDescriptionWrapper>
-      <Paragraph bold>
+      <Header>
         {title} sticker - ${price}
-      </Paragraph>
+      </Header>
       <Paragraph grey>{description}</Paragraph>
       <Paragraph bold>Categories: {categories.map(({ name }) => `${name} `)}</Paragraph>
     </StyledDescriptionWrapper>

@@ -1,8 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import Paragraph from 'components/Paragraph/Paragraph';
+import Header from 'components/Header/Header';
 
 import { useItems } from 'store';
 
@@ -18,10 +22,8 @@ const StyledWrapper = styled.div`
   }
 `;
 
-const StyledImg = styled.img`
-  margin: auto;
-  max-width: 100%;
-  height: auto;
+const StyledLazyLoadImage = styled(LazyLoadImage)`
+  margin: 0 auto;
   display: block;
 `;
 
@@ -40,6 +42,24 @@ const StyledButton = styled.button`
   background-color: ${({ theme }) => theme.white};
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
   margin-top: 5px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
 `;
 
 const ProductTemplate = ({ match }) => {
@@ -58,16 +78,16 @@ const ProductTemplate = ({ match }) => {
       {product.length
         ? product.map(({ id, title, description, categories, price, image }) => (
             <Fragment key={id}>
-              <div>
-                <StyledImg
-                  alt={title}
-                  src={`http://localhost:1337${image.formats.thumbnail.url}`}
-                />
-              </div>
+              <StyledLazyLoadImage
+                alt={title}
+                src={`http://localhost:1337${image.formats.thumbnail.url}`}
+                effect="blur"
+                height="156px"
+              />
               <ContentWrapper>
-                <Paragraph bold>
-                  {title} - ${price}
-                </Paragraph>
+                <Header bold header>
+                  {title} sticker - ${price}
+                </Header>
                 <Paragraph grey>{description}</Paragraph>
                 <Paragraph bold>Categories: {categories.map(({ name }) => `${name} `)}</Paragraph>
                 <StyledButton>Add to cart</StyledButton>
