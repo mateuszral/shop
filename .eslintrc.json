@@ -3,7 +3,8 @@
   "plugins": ["babel", "react-hooks"],
   "parser": "babel-eslint",
   "env": {
-    "jest": true
+    "jest": true,
+    "browser": true
   },
   "globals": {
     "window": true,
