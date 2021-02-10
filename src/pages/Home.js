@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { useItems } from 'store';
 
+import FilterBar from 'components/FilterBar/FilterBar';
 import Card from 'components/Card/Card';
 
 const StyledWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ContentWrapper = styled.div`
@@ -26,17 +28,25 @@ const ContentWrapper = styled.div`
 `;
 
 const Home = () => {
+  const [activeCategory, setActiveCategory] = useState('all');
   const [{ items }, { fetchItems }] = useItems();
 
   useEffect(() => {
     fetchItems();
   }, []);
 
+  const handleFilterByCategory = (e) => {
+    const { category } = e.target.parentElement.dataset;
+    setActiveCategory(category);
+  };
+
   return (
     <StyledWrapper>
+      <FilterBar handleClick={handleFilterByCategory} featuredItem={activeCategory} />
       <ContentWrapper>
-        {items.length
-          ? items.map(({ id, image, price, slug, title, description, categories }) => (
+        {items.map(({ id, image, price, slug, title, description, categories }) => {
+          if (activeCategory === 'all') {
+            return (
               <Card
                 key={id}
                 id={id}
@@ -45,10 +55,23 @@ const Home = () => {
                 slug={slug}
                 title={title}
                 description={description}
-                categories={categories}
               />
-            ))
-          : null}
+            );
+          }
+          return categories.map(({ slug: categorySlug }) =>
+            categorySlug === activeCategory ? (
+              <Card
+                key={id}
+                id={id}
+                image={image}
+                price={price}
+                slug={slug}
+                title={title}
+                description={description}
+              />
+            ) : null,
+          );
+        })}
       </ContentWrapper>
     </StyledWrapper>
   );
