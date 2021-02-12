@@ -7,11 +7,16 @@ import GlobalStyles from 'assets/styles/globalStyles';
 
 import { theme } from 'assets/styles/theme';
 
+import Navigation from 'components/molecules/Navigation/Navigation';
+
 const MainTemplate = ({ children }) => (
   <>
     <Helmet lang="pl" title="Stickers shop" />
     <GlobalStyles />
-    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <Navigation />
+      {children}
+    </ThemeProvider>
   </>
 );
 
