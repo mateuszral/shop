@@ -8,6 +8,8 @@ import { routes } from 'routes';
 
 import { useItems } from 'store';
 
+import { BiCart } from 'react-icons/bi';
+
 const StyledNav = styled.nav`
   display: flex;
   justify-content: space-around;
@@ -16,6 +18,17 @@ const StyledNav = styled.nav`
 
 const StyledParagraph = styled(Paragraph)`
   margin: 0;
+`;
+
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  padding: 5px;
+
+  span {
+    margin-left: 5px;
+    font-size: ${({ theme }) => theme.font.size.header};
+  }
 `;
 
 const Navigation = () => {
@@ -38,7 +51,9 @@ const Navigation = () => {
         Home
       </StyledParagraph>
       <span>
-        Items in <Link to={routes.cart}>cart: {totalAmount}</Link>
+        <StyledLink to={routes.cart}>
+          <BiCart size="1.5em" /> <span>{totalAmount}</span>
+        </StyledLink>
       </span>
     </StyledNav>
   );
