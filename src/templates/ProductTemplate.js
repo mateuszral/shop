@@ -1,15 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import Paragraph from 'components/Paragraph/Paragraph';
-import Header from 'components/Header/Header';
-import BoxShadow from 'components/BoxShadow/BoxShadow';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
+import Header from 'components/atoms/Header/Header';
+import BoxShadow from 'components/atoms/BoxShadow/BoxShadow';
 
 import { useItems } from 'store';
+
+import { routes } from 'routes';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -48,7 +51,8 @@ const StyledButton = styled.button`
 
 const ProductTemplate = ({ match }) => {
   const [product, setProduct] = useState([]);
-  const [{ items }, { fetchItems }] = useItems();
+  const [{ items }, { fetchItems, addToCart }] = useItems();
+  const history = useHistory();
 
   useEffect(() => {
     if (!items.length) {
@@ -56,6 +60,11 @@ const ProductTemplate = ({ match }) => {
     }
     setProduct(items.filter(({ slug }) => slug === match.params.slug));
   }, [items]);
+
+  const handleAddToCart = (data) => {
+    addToCart(data);
+    history.push(routes.cart);
+  };
 
   return (
     <StyledWrapper>
@@ -69,12 +78,14 @@ const ProductTemplate = ({ match }) => {
                 height="156px"
               />
               <ContentWrapper>
-                <Header bold header>
+                <Header>
                   {title} sticker - ${price}
                 </Header>
                 <Paragraph grey>{description}</Paragraph>
                 <Paragraph bold>Categories: {categories.map(({ name }) => `${name} `)}</Paragraph>
-                <StyledButton>
+                <StyledButton
+                  onClick={() => handleAddToCart({ id, title, description, price, image })}
+                >
                   Add to cart
                   <BoxShadow />
                 </StyledButton>
