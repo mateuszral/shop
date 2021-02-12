@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import { useItems } from 'store';
 
-import FilterBar from 'components/FilterBar/FilterBar';
-import Card from 'components/Card/Card';
+import FilterBar from 'components/molecules/FilterBar/FilterBar';
+import Card from 'components/molecules/Card/Card';
 
 const StyledWrapper = styled.div`
   display: flex;
