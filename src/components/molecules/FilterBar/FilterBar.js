@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import axios from 'axios';
 
-import BoxShadow from 'components/BoxShadow/BoxShadow';
+import BoxShadow from 'components/atoms/BoxShadow/BoxShadow';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
+import { fetchData } from 'helpers';
 
 const StyledList = styled.ul`
   display: flex;
@@ -27,8 +28,12 @@ const FilterBar = ({ handleClick, featuredItem = 'all' }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:1337/categories').then(({ data }) => setCategories(data));
+    fetchData('categories').then((data) => setCategories(data));
   }, []);
+
+  if (categories.length === 0) {
+    return <Paragraph>Loading...</Paragraph>;
+  }
 
   return (
     <StyledList>

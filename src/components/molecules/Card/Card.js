@@ -6,9 +6,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import Paragraph from 'components/Paragraph/Paragraph';
-import Header from 'components/Header/Header';
-import BoxShadow from 'components/BoxShadow/BoxShadow';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
+import BoxShadow from 'components/atoms/BoxShadow/BoxShadow';
 
 import { routes } from 'routes';
 
@@ -36,9 +35,9 @@ const Card = ({ id, title, slug, description, price, image }) => (
       height="156px"
     />
     <StyledDescriptionWrapper>
-      <Header>
+      <Paragraph big>
         {title} sticker - ${price}
-      </Header>
+      </Paragraph>
       <Paragraph grey>{description}</Paragraph>
     </StyledDescriptionWrapper>
     <BoxShadow />
