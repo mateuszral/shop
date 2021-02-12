@@ -23,7 +23,7 @@ export const colors = {
 export const font = {
   size: {
     bigHeader: '3.6rem',
-    header: '2.2rem',
+    header: '2.1rem',
     paragraph: '1.6rem',
     button: '1.3rem',
   },
