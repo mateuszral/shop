@@ -9,6 +9,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Header from 'components/atoms/Header/Header';
 import BoxShadow from 'components/atoms/BoxShadow/BoxShadow';
+import Button from 'components/atoms/Button/Button';
 
 import { useItems } from 'store';
 
@@ -36,17 +37,6 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
-
-const StyledButton = styled.button`
-  width: 100%;
-  padding: 10px 0;
-  font-weight: ${({ theme }) => theme.font.weight.semiBold};
-  border: none;
-  background-color: ${({ theme }) => theme.white};
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
-  margin-top: 5px;
-  position: relative;
 `;
 
 const ProductTemplate = ({ match }) => {
@@ -83,12 +73,10 @@ const ProductTemplate = ({ match }) => {
                 </Header>
                 <Paragraph grey>{description}</Paragraph>
                 <Paragraph bold>Categories: {categories.map(({ name }) => `${name} `)}</Paragraph>
-                <StyledButton
-                  onClick={() => handleAddToCart({ id, title, description, price, image })}
-                >
+                <Button onClick={() => handleAddToCart({ id, title, description, price, image })}>
                   Add to cart
                   <BoxShadow />
-                </StyledButton>
+                </Button>
               </ContentWrapper>
             </Fragment>
           ))
