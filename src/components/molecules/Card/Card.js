@@ -30,7 +30,7 @@ const Card = ({ id, title, slug, description, price, image }) => (
   <StyledCard key={id} as={Link} to={`${routes.products}${slug}`}>
     <LazyLoadImage
       alt={title}
-      src={`http://localhost:1337${image.formats.thumbnail.url}`}
+      src={`https://stickers-shopv1.herokuapp.com/${image.formats.thumbnail.url}`}
       effect="blur"
       height="156px"
     />

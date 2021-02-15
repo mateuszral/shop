@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:1337/';
+const baseURL = 'https://stickers-shopv1.herokuapp.com/';
 
 export const fetchData = async (name) => {
   try {
