@@ -5,8 +5,10 @@ const Paragraph = styled.p`
   font-size: ${({ theme, big }) => big && theme.font.size.header};
   color: ${({ theme, grey }) => grey && theme.grey100};
   margin: 5px 0;
+  align-self: ${({ center }) => center && 'center'};
 
   ${({ theme }) => theme.mq.tablet} {
+    align-self: initial;
     margin: ${({ smallMargin }) => (smallMargin ? '5px' : '15px')} 0;
   }
 `;
