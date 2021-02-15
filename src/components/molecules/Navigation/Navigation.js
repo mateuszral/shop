@@ -47,14 +47,12 @@ const Navigation = () => {
 
   return (
     <StyledNav>
-      <StyledParagraph as={Link} to={routes.home} bold>
+      <StyledParagraph as={Link} to={routes.home} bold big>
         Home
       </StyledParagraph>
-      <span>
-        <StyledLink to={routes.cart}>
-          <BiCart size="1.5em" /> <span>{totalAmount}</span>
-        </StyledLink>
-      </span>
+      <StyledLink to={routes.cart}>
+        <BiCart color="#5082e4" size="1.5em" /> <span>{totalAmount}</span>
+      </StyledLink>
     </StyledNav>
   );
 };
