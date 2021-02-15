@@ -16,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-sweet-state": "^2.5.1",
+    "styled-components": "^5.2.1",
     "webfontloader": "^1.6.28"
   },
   "scripts": {
@@ -55,8 +56,7 @@
     "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.5.1",
-    "prettier": "^2.1.2",
-    "styled-components": "^5.2.1"
+    "prettier": "^2.1.2"
   },
   "husky": {
     "hooks": {
