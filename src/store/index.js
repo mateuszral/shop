@@ -39,9 +39,7 @@ const itemsStore = createStore({
                 quantity: item.quantity - 1,
               };
             }
-            return {
-              ...item,
-            };
+            return item;
           }
           return {
             ...item,
@@ -51,6 +49,9 @@ const itemsStore = createStore({
         return item;
       });
       setState({ cart: [...newCart] });
+    },
+    removeItemFromCart: (id) => ({ setState, getState }) => {
+      setState({ cart: [...getState().cart.filter(({ itemId }) => itemId !== id)] });
     },
   },
   name: 'items',
