@@ -63,7 +63,7 @@ const ProductTemplate = ({ match }) => {
             <Fragment key={id}>
               <StyledLazyLoadImage
                 alt={title}
-                src={`https://stickers-shopv1.herokuapp.com/${image.formats.thumbnail.url}`}
+                src={`https://stickers-shopv1.herokuapp.com${image.formats.thumbnail.url}`}
                 effect="blur"
                 height="156px"
               />
