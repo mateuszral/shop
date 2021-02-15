@@ -22,11 +22,15 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledChekoutWrapper = styled.div`
-  width: 40%;
   display: flex;
   flex-direction: column;
   align-self: flex-end;
-  padding-right: 10%;
+  padding: 0 40px;
+
+  ${({ theme }) => theme.mq.tablet} {
+    width: 40%;
+    padding-right: 10%;
+  }
 `;
 
 const StyledList = styled.ul`
@@ -35,6 +39,8 @@ const StyledList = styled.ul`
 `;
 
 const StyledListItem = styled.li`
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr;
   display: flex;
   background-color: ${({ theme }) => theme.white};
   padding: 40px;
@@ -62,7 +68,8 @@ const StyledRemoveItemButton = styled.button`
 const StyledContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-
+  justify-content: ${({ flexend }) => flexend && 'flex-end'};
+  align-items: ${({ flexend }) => flexend && 'flex-end'};
   ${({ theme }) => theme.mq.tablet} {
     justify-content: ${({ flexend }) => flexend && 'flex-end'};
     align-items: ${({ flexend }) => flexend && 'flex-end'};
@@ -71,14 +78,13 @@ const StyledContentWrapper = styled.div`
 
 const StyledButtonWrapper = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 10px;
   justify-content: center;
-
   ${({ theme }) => theme.mq.tablet} {
     padding-right: 0;
   }
-
   button {
     padding: 5px;
     margin: 0 10px;
